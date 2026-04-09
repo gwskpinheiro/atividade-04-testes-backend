@@ -11,6 +11,7 @@ const criarLivro = async (titulo, autor) => {
 
 const atualizarLivro = async (titulo, autor, id) => {
   const livro = await Livro.findByPk(id);
+  if (!livro) throw new Error('Livro não encontrado');
   await livro.update({ titulo, autor });
   return {
     id: livro.id,

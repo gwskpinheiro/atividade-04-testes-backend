@@ -2,6 +2,20 @@ const axios = require('axios');
 require('dotenv').config();
 const api = `http://localhost:${process.env.PORT || 3000}`;
 
+let LIVRO_ID;
+
+beforeAll(async () => {
+    const livro = await axios.post(`${api}/livros`, {
+        titulo: "Livro Setup",
+        autor: "Autor Setup"
+    });
+    LIVRO_ID = livro.data.id;
+});
+
+afterAll(async () => {
+    await axios.delete(`${api}/livros/${LIVRO_ID}`).catch(() => {});
+});
+
 describe('Rotas de API - ATV03', ()=> {
   test('GET /livros lista os livros', async () => {
     const res = await axios.get(`${api}/livros`);
@@ -10,8 +24,7 @@ describe('Rotas de API - ATV03', ()=> {
   });
   
   test('GET /livros/:id busca um livro por id', async () => {
-    const id = 103;
-    const res = await axios.get(`${api}/livros/${id}`);
+    const res = await axios.get(`${api}/livros/${LIVRO_ID}`);
     expect(res.status).toBe(200);
   });
 
@@ -22,19 +35,16 @@ describe('Rotas de API - ATV03', ()=> {
     });
     expect(res.status).toBe(201);
     expect(res.data.titulo).toBe('Clean Code');
-
     await axios.delete(`${api}/livros/${res.data.id}`);
   });
 
   test('PUT /livros/:id atualiza um livro', async () => {
-    const novoTitulo = 'Livo Novo'
-    const novoAutor = 'Josue'
-    const id = 326;
-    const res = await axios.put(`${api}/livros/${id}`, { 
+    const novoTitulo = 'Livro Novo';
+    const novoAutor = 'Josue';
+    const res = await axios.put(`${api}/livros/${LIVRO_ID}`, { 
       titulo: novoTitulo, 
       autor: novoAutor
     });
-    
     expect(res.status).toBe(201);
     expect(res.data.titulo).toBe(novoTitulo);
   });

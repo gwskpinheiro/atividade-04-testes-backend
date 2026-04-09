@@ -2,10 +2,7 @@ const { criarLivro, listarLivros, pegarPorId, deletarLivro, atualizarLivro, list
 
 const criar = async (req, res) => {
     const { titulo, autor } = req.body;
-
-    if (!titulo || !autor) return res.status(400)
-        .json({ erro: 'titulo e autor são obrigatórios'})
-
+    if (!titulo || !autor) return res.status(400).json({ erro: 'titulo e autor são obrigatórios'});
     const livro = await criarLivro(titulo, autor);
     res.status(201).json(livro);
 }
@@ -28,11 +25,15 @@ const buscarPorId = async (req, res) => {
 }
 
 const atualizar = async (req, res) => {
-    const { id } = req.params;
-    const { titulo, autor } = req.body;
-    if (!id) return res.status(400).json({ erro: 'id é obrigatório' });
-    const livro = await atualizarLivro(titulo, autor, id);
-    res.status(201).json(livro);
+    try {
+        const { id } = req.params;
+        const { titulo, autor } = req.body;
+        if (!id) return res.status(400).json({ erro: 'id é obrigatório' });
+        const livro = await atualizarLivro(titulo, autor, id);
+        res.status(201).json(livro);
+    } catch (error) {
+        res.status(404).json({ erro: error.message });
+    }
 }
 
 const deletar = async (req, res) => {
