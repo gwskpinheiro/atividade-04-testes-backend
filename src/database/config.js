@@ -2,28 +2,19 @@ require('dotenv').config();
 
 module.exports = {
   development: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT || 3306,
+    username: 'root',      // Forçamos o usuário do XAMPP
+    password: '',          // Senha vazia do XAMPP
+    database: 'atividade04', // Nome do banco que você criou
+    host: '127.0.0.1',
     dialect: 'mysql',
+    logging: false
   },
   test: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME_TEST || process.env.DB_NAME,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT || 3306,
-    dialect: 'mysql',
-    logging: false,
-  },
-  production: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT || 3306,
-    dialect: 'mysql',
-  },
+    // Pode repetir ou deixar como está
+    username: 'root',
+    password: '',
+    database: 'atividade04_test',
+    host: '127.0.0.1',
+    dialect: 'mysql'
+  }
 };
