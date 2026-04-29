@@ -48,7 +48,7 @@ const criar = async (req, res) => {
 const atualizar = async (req, res) => {
     try {
         const { id } = req.params;
-        const dados = req.body; // Pega tudo que vier no body para atualizar
+        const dados = req.body; 
 
         const usuarioAtualizado = await usuarioService.atualizarUsuario(id, dados);
 

@@ -8,7 +8,7 @@ const buscarPorId = async (id) => {
   return await Usuario.findByPk(id);
 };
 
-// Precisamos dessa função para verificar e-mails duplicados
+
 const buscarPorEmail = async (email) => {
   return await Usuario.findOne({ where: { email } });
 };

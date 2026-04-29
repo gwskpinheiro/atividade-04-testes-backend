@@ -14,7 +14,7 @@ const Usuario = sequelize.define('Usuario', {
   email: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true, // Garante que não vai ter e-mail repetido no banco
+    unique: true, 
   },
   senha: {
     type: DataTypes.STRING,
@@ -26,7 +26,7 @@ const Usuario = sequelize.define('Usuario', {
   }
 }, {
   tableName: 'usuarios',
-  timestamps: false // Deixa false se o professor não pediu createdAt/updatedAt
+  timestamps: false 
 });
 
 module.exports = Usuario;
