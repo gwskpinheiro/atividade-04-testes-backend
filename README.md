@@ -1,4 +1,4 @@
-# 📚 ATIVIDADE-03 — Testes de Software (Backend)
+# 📚 ATIVIDADE — Testes de Software (Backend)
 
 API REST com Node.js, Express, Sequelize e MySQL. Módulos: Livros, Usuários, Empréstimos e Multas.
 
